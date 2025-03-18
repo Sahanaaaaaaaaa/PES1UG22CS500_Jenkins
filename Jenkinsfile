@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'make -C nonexistent_dir' 
+                sh 'make -C main' 
             }    
         }    
 
         stage('Test') {
             steps {
-                sh './main/hello_ex
+                sh './main/hello_exec'
             }
         }
         stage('Deploy') {
