@@ -1,13 +1,15 @@
 FROM jenkins/jenkins:lts
-#FROM ubuntu:20.04
-# if we want to install via apt
+
+# Switch to root user to install dependencies
 USER root
-RUN apt-get update && apt-get install -y make && apt-get install -y g++ --fix-missing
-# drop back to the regular jenkins user - good practice
+
+# Ensure package lists are updated and dependencies are installed properly
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
+
+# Switch back to the Jenkins user (best practice)
 USER jenkins
-
-
-
-
-
-
