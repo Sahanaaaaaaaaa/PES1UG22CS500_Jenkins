@@ -3,9 +3,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'make -C mai'
-            }
-        }
+                sh 'make -C nonexistent_dir' // This directory doesn't exist
+            }    
+        }    
+
         stage('Test') {
             steps {
                 sh './main/hello_ex
